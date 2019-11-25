@@ -9,6 +9,20 @@ struct Player {
     class: i32,
     moves: std::collections::HashMap<String, i32>,
 }
+#[allow(dead_code)]
+struct Slime {
+    health: i32,
+    moves: std::collections::HashMap<String, i32>,
+}
+#[allow(dead_code)]
+impl Slime {
+    fn new() -> Slime {
+        Slime {
+            health: 20,
+            moves: std::collections::HashMap::new(),
+        }
+    }
+}
 impl Player {
     fn new() -> Player {
         Player {
