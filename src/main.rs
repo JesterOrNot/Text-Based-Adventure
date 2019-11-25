@@ -1,5 +1,5 @@
-#[macro_use]
-extern crate colour;
+extern crate colored; // not needed in Rust 2018
+use colored::*;
 use std::io::Write;
 #[derive(Debug)]
 struct Player {
@@ -33,32 +33,43 @@ impl Player {
     }
 }
 fn main() {
-    green!("Welcome to TextLand! Where your dreams come to life!\n");
+    println!(
+        "{}",
+        "Welcome to TextLand! Where your dreams come to life!".green()
+    );
     let mut player = Player::new();
     player.name = get_adventurer_name();
-    green!("Well, Hello {}! Welcome to TextLand\n", player.name);
+    println!(
+        "{}{}{}",
+        "Well, Hello ".green(),
+        player.name.green(),
+        "! Welcome to TextLand!".green()
+    );
     player.class = get_type();
     player.moves = get_moves(player.class);
     loop {
         let my_move = move_player();
         match my_move {
-            1 => print!("{} went Norh!\n", player.name),
-            2 => print!("{} went South!\n", player.name),
-            3 => print!("{} went East!\n", player.name),
-            4 => print!("{} went West!\n", player.name),
-            _ => red!("FATAL ERROR THIS SHOULDN'T BE POSSIBLE!"),
+            1 => println!("{}{}", player.name.green(), " went North!".green()),
+            2 => println!("{}{}", player.name.green(), " went South!".green()),
+            3 => println!("{}{}", player.name.green(), " went East!".green()),
+            4 => println!("{}{}", player.name.green(), " went West!".green()),
+            _ => println!("{}", "FATAL ERROR THIS SHOULDN'T BE POSSIBLE!".green()),
         }
     }
 }
 fn get_adventurer_name() -> String {
-    cyan!("What is your name adventurer?: ");
+    print!("{}", "What is your name adventurer?: ".cyan());
     std::io::stdout().flush().unwrap();
     let mut adventurer_name = String::new();
     std::io::stdin().read_line(&mut adventurer_name).unwrap();
     return String::from(adventurer_name.trim());
 }
 fn move_player() -> i32 {
-    cyan!("Would you like to go North(1), South(2), East(3) or West(4)?: ");
+    print!(
+        "{}",
+        "Would you like to go North(1), South(2), East(3) or West(4)?: ".cyan()
+    );
     std::io::stdout().flush().unwrap();
     let mut direction = String::new();
     std::io::stdin().read_line(&mut direction).unwrap();
@@ -66,22 +77,25 @@ fn move_player() -> i32 {
     match direction {
         Ok(n) => {
             if n <= 0 {
-                red!("Number too small!\n");
+                println!("{}", "Number too small!".red());
                 return move_player();
             } else if n >= 5 {
-                red!("Number too big!\n");
+                println!("{}", "Number too big!".red());
                 return move_player();
             }
             return n;
         }
         Err(_n) => {
-            red!("You must give a number!\n");
+            println!("{}", "You must give a number!".cyan());
             return move_player();
         }
     }
 }
 fn get_type() -> i32 {
-    cyan!("Are you a mage(1), A warrior(2) or a rogue(3)?: ");
+    print!(
+        "{}",
+        "Are you a mage(1), A warrior(2) or a rogue(3)?: ".cyan()
+    );
     std::io::stdout().flush().unwrap();
     let mut adventurer_type = String::new();
     std::io::stdin().read_line(&mut adventurer_type).unwrap();
@@ -126,9 +140,9 @@ fn test_get_moves() {
     map3.insert(String::from("Invisibility"), 20);
     map3.insert(String::from("Bow"), 5);
     assert_eq!(get_moves(1), map);
-    green!("Mage set works!\n");
+    println!("{}","Mage set works!".green());
     assert_eq!(get_moves(2), map2);
-    green!("Warrior set works!\n");
+    println!("{}","Warrior set works!".green());
     assert_eq!(get_moves(3), map3);
-    green!("Rogue set works!\n");
+    println!("{}","Rogue set works!".green());
 }
