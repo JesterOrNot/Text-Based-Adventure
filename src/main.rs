@@ -101,9 +101,18 @@ fn get_type() -> i32 {
     std::io::stdin().read_line(&mut adventurer_type).unwrap();
     let adventurer_type = adventurer_type.trim().parse();
     match adventurer_type {
-        Ok(n) => n,
+        Ok(n) => {
+            if n <= 0 {
+                println!("{}", "Number too small!".red());
+                return get_type();
+            } else if n >= 5 {
+                println!("{}", "Number too big!".red());
+                return get_type();
+            }
+            return n;
+        }
         Err(_n) => {
-            println!("You must give me a number!");
+            println!("{}", "You must give me a number!".red());
             return get_type();
         }
     }
@@ -140,9 +149,9 @@ fn test_get_moves() {
     map3.insert(String::from("Invisibility"), 20);
     map3.insert(String::from("Bow"), 5);
     assert_eq!(get_moves(1), map);
-    println!("{}","Mage set works!".green());
+    println!("{}", "Mage set works!".green());
     assert_eq!(get_moves(2), map2);
-    println!("{}","Warrior set works!".green());
+    println!("{}", "Warrior set works!".green());
     assert_eq!(get_moves(3), map3);
-    println!("{}","Rogue set works!".green());
+    println!("{}", "Rogue set works!".green());
 }
