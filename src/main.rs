@@ -8,13 +8,8 @@ fn main() {
     let name = get_adventurer_name();
     green!("Well, Hello {}! Welcome to TextLand\n", name);
     let class = get_type();
-    let mut z = std::collections::HashMap::new();
-    if class == 1 {
-        z.insert("Fireball", 10);
-        z.insert("Heal", 5);
-        z.insert("Ward", 14);
-    }
-    println!("{:?}", z)
+    let move_list = get_moves(class);
+    println!("{:?}", move_list);
 }
 fn get_adventurer_name() -> String {
     cyan!("What is your name adventurer?: ");
@@ -36,4 +31,13 @@ fn get_type() -> i32 {
             return get_type();
         }
     }
+}
+fn get_moves(class: i32) -> std::collections::HashMap<String, i32> {
+    let mut map = std::collections::HashMap::new();
+    if class == 1 {
+        map.insert(String::from("Fireball"), 10);
+        map.insert(String::from("Heal"), 5);
+        map.insert(String::from("Ward"), 14);
+    }
+    return map;
 }
