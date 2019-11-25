@@ -1,8 +1,7 @@
 #[macro_use]
 extern crate colour;
-
 use std::io::Write;
-
+#[derive(Debug)]
 struct Player {
     name: String,
     health: i32,
@@ -40,7 +39,11 @@ fn main() {
     green!("Well, Hello {}! Welcome to TextLand\n", player.name);
     player.class = get_type();
     player.moves = get_moves(player.class);
-    println!("{:?}", player.moves);
+    println!("{:?}", player);
+    loop {
+        let myMove = movePlayer();
+        println!("{}",myMove);
+    }
 }
 fn get_adventurer_name() -> String {
     cyan!("What is your name adventurer?: ");
@@ -48,6 +51,20 @@ fn get_adventurer_name() -> String {
     let mut adventurer_name = String::new();
     std::io::stdin().read_line(&mut adventurer_name).unwrap();
     return String::from(adventurer_name.trim());
+}
+fn movePlayer() -> i32 {
+    cyan!("Would you like to go North(1), South(2), East(3) or West(4)?: ");
+    std::io::stdout().flush().unwrap();
+    let mut direction = String::new();
+    std::io::stdin().read_line(&mut direction).unwrap();
+    let direction = direction.trim().parse();
+    match direction {
+        Ok(n) => n,
+        Err(_n) => {
+            println!("You must give me a number!");
+            return movePlayer();
+        }
+    }
 }
 fn get_type() -> i32 {
     cyan!("Are you a mage(1), A warrior(2) or a rogue(3)?: ");
