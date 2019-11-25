@@ -12,7 +12,7 @@ fn main() {
     if class == 1 {
         z.insert("Fireball", 10);
         z.insert("Heal", 5);
-        z.insert("Ward",14);
+        z.insert("Ward", 14);
     }
     println!("{:?}", z)
 }
