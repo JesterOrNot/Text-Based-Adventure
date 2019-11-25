@@ -6,7 +6,7 @@ use std::io::Write;
 fn main() {
     green!("Welcome to TextLand! Where your dreams come to life!\n");
     let name = get_adventurer_name();
-    println!("Well Hello {}! Welcome to TextLand", name)
+    println!("Well, Hello {}! Welcome to TextLand", name)
 }
 fn get_adventurer_name() -> String {
     print!("What is your name adventurer?: ");
