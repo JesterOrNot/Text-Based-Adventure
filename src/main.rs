@@ -39,10 +39,9 @@ fn main() {
     green!("Well, Hello {}! Welcome to TextLand\n", player.name);
     player.class = get_type();
     player.moves = get_moves(player.class);
-    println!("{:?}", player);
     loop {
-        let myMove = movePlayer();
-        println!("{}",myMove);
+        let my_move = move_player();
+        println!("{}", my_move);
     }
 }
 fn get_adventurer_name() -> String {
@@ -52,17 +51,26 @@ fn get_adventurer_name() -> String {
     std::io::stdin().read_line(&mut adventurer_name).unwrap();
     return String::from(adventurer_name.trim());
 }
-fn movePlayer() -> i32 {
+fn move_player() -> i32 {
     cyan!("Would you like to go North(1), South(2), East(3) or West(4)?: ");
     std::io::stdout().flush().unwrap();
     let mut direction = String::new();
     std::io::stdin().read_line(&mut direction).unwrap();
     let direction = direction.trim().parse();
     match direction {
-        Ok(n) => n,
+        Ok(n) => {
+            if n <= 0 {
+                red!("Number too small!\n");
+                return move_player();
+            } else if n >= 4 {
+                red!("Number too big!\n");
+                return move_player();
+            }
+            return n;
+        }
         Err(_n) => {
-            println!("You must give me a number!");
-            return movePlayer();
+            red!("You must give a number!\n");
+            return move_player();
         }
     }
 }
