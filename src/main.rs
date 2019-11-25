@@ -92,7 +92,7 @@ fn move_player() -> i32 {
             return n;
         }
         Err(_n) => {
-            println!("{}", "You must give a number!".cyan());
+            println!("{}", "You must give a number!".red());
             return move_player();
         }
     }
