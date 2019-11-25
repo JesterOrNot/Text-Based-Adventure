@@ -3,13 +3,28 @@ extern crate colour;
 
 use std::io::Write;
 
+struct Player {
+    name: String,
+    class: i32,
+    moves: std::collections::HashMap<String, i32>,
+}
+impl Player {
+    fn new() -> Player {
+        Player {
+            name: String::new(),
+            class: 4,
+            moves: std::collections::HashMap::new(),
+        }
+    }
+}
 fn main() {
     green!("Welcome to TextLand! Where your dreams come to life!\n");
-    let name = get_adventurer_name();
-    green!("Well, Hello {}! Welcome to TextLand\n", name);
-    let class = get_type();
-    let move_list = get_moves(class);
-    println!("{:?}", move_list);
+    let mut player = Player::new();
+    player.name = get_adventurer_name();
+    green!("Well, Hello {}! Welcome to TextLand\n", player.name);
+    player.class = get_type();
+    player.moves = get_moves(player.class);
+    println!("{:?}", player.moves);
 }
 fn get_adventurer_name() -> String {
     cyan!("What is your name adventurer?: ");
