@@ -16,7 +16,7 @@ fn get_adventurer_name() -> String {
     std::io::stdin().read_line(&mut adventurer_name).unwrap();
     return String::from(adventurer_name.trim());
 }
-fn get_type() -> Result<i32,std::num::ParseIntError> {
+fn get_type() -> Result<i32, std::num::ParseIntError> {
     cyan!("Are you a mage(1), A warrior(2) or a rogue(3)?: ");
     std::io::stdout().flush().unwrap();
     let mut adventurer_type = String::new();
