@@ -38,6 +38,35 @@ fn get_moves(class: i32) -> std::collections::HashMap<String, i32> {
         map.insert(String::from("Fireball"), 10);
         map.insert(String::from("Heal"), 5);
         map.insert(String::from("Ward"), 14);
+    } else if class == 2 {
+        map.insert(String::from("Sword"), 12);
+        map.insert(String::from("Sheild"), 7);
+        map.insert(String::from("Hammer"), 20);
+    } else if class == 3 {
+        map.insert(String::from("Dagger"), 7);
+        map.insert(String::from("Invisibility"), 20);
+        map.insert(String::from("Bow"), 5);
     }
     return map;
+}
+#[test]
+fn test_get_moves() {
+    let mut map = std::collections::HashMap::new();
+    let mut map2 = std::collections::HashMap::new();
+    let mut map3 = std::collections::HashMap::new();
+    map.insert(String::from("Fireball"), 10);
+    map.insert(String::from("Heal"), 5);
+    map.insert(String::from("Ward"), 14);
+    map2.insert(String::from("Sword"), 12);
+    map2.insert(String::from("Sheild"), 7);
+    map2.insert(String::from("Hammer"), 20);
+    map3.insert(String::from("Dagger"), 7);
+    map3.insert(String::from("Invisibility"), 20);
+    map3.insert(String::from("Bow"), 5);
+    assert_eq!(get_moves(1),map);
+    green!("Mage set works!\n");
+    assert_eq!(get_moves(2),map2);
+    green!("Warrior set works!\n");
+    assert_eq!(get_moves(3),map3);
+    green!("Rogue set works!\n");
 }
