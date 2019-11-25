@@ -63,10 +63,10 @@ fn test_get_moves() {
     map3.insert(String::from("Dagger"), 7);
     map3.insert(String::from("Invisibility"), 20);
     map3.insert(String::from("Bow"), 5);
-    assert_eq!(get_moves(1),map);
+    assert_eq!(get_moves(1), map);
     green!("Mage set works!\n");
-    assert_eq!(get_moves(2),map2);
+    assert_eq!(get_moves(2), map2);
     green!("Warrior set works!\n");
-    assert_eq!(get_moves(3),map3);
+    assert_eq!(get_moves(3), map3);
     green!("Rogue set works!\n");
 }
