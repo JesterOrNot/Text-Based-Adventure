@@ -41,7 +41,13 @@ fn main() {
     player.moves = get_moves(player.class);
     loop {
         let my_move = move_player();
-        println!("{}", my_move);
+        match my_move {
+            1 => print!("{} went Norh!\n", player.name),
+            2 => print!("{} went South!\n", player.name),
+            3 => print!("{} went East!\n", player.name),
+            4 => print!("{} went West!\n", player.name),
+            _ => red!("FATAL ERROR THIS SHOULDN'T BE POSSIBLE!"),
+        }
     }
 }
 fn get_adventurer_name() -> String {
@@ -62,7 +68,7 @@ fn move_player() -> i32 {
             if n <= 0 {
                 red!("Number too small!\n");
                 return move_player();
-            } else if n >= 4 {
+            } else if n >= 5 {
                 red!("Number too big!\n");
                 return move_player();
             }
