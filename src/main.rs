@@ -5,6 +5,7 @@ use std::io::Write;
 
 struct Player {
     name: String,
+    health: i32,
     class: i32,
     moves: std::collections::HashMap<String, i32>,
 }
@@ -12,6 +13,7 @@ impl Player {
     fn new() -> Player {
         Player {
             name: String::new(),
+            health: 100,
             class: 4,
             moves: std::collections::HashMap::new(),
         }
