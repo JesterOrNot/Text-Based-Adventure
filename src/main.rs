@@ -46,6 +46,12 @@ fn main() {
         "! Welcome to TextLand!".green()
     );
     player.class = get_type();
+    match player.class {
+        1 => println!("{}", "Welcome Mage!".green()),
+        2 => println!("{}", "Welcome Warrior!".green()),
+        3 => println!("{}", "Welcome Rogue!".green()),
+        _ => println!("{}", "FATAL ERROR THIS SHOULDN'T BE POSSIBLE!".red()),
+    }
     player.moves = get_moves(player.class);
     loop {
         let my_move = move_player();
@@ -54,7 +60,7 @@ fn main() {
             2 => println!("{}{}", player.name.green(), " went South!".green()),
             3 => println!("{}{}", player.name.green(), " went East!".green()),
             4 => println!("{}{}", player.name.green(), " went West!".green()),
-            _ => println!("{}", "FATAL ERROR THIS SHOULDN'T BE POSSIBLE!".green()),
+            _ => println!("{}", "FATAL ERROR THIS SHOULDN'T BE POSSIBLE!".red()),
         }
     }
 }
@@ -105,7 +111,7 @@ fn get_type() -> i32 {
             if n <= 0 {
                 println!("{}", "Number too small!".red());
                 return get_type();
-            } else if n >= 5 {
+            } else if n >= 4 {
                 println!("{}", "Number too big!".red());
                 return get_type();
             }
