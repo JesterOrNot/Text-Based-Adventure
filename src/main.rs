@@ -100,7 +100,7 @@ fn move_player() -> i32 {
 fn get_type() -> i32 {
     print!(
         "{}",
-        "Are you a mage(1), A warrior(2) or a rogue(3)?: ".cyan()
+        "Are you a Mage(1), A Warrior(2) or a Rogue(3)?: ".cyan()
     );
     std::io::stdout().flush().unwrap();
     let mut adventurer_type = String::new();
