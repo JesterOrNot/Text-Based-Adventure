@@ -1,6 +1,10 @@
+#[macro_use]
+extern crate colour;
+
 use std::io::Write;
+
 fn main() {
-    println!("Welcome to TextLand! Where your dreams come to life!");
+    green!("Welcome to TextLand! Where your dreams come to life!\n");
     let name = get_adventurer_name();
     println!("Well Hello {}! Welcome to TextLand", name)
 }
