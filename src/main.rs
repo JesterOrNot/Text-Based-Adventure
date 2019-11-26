@@ -1,37 +1,6 @@
 use colored::*;
 use rand::Rng;
 use std::io::Write;
-#[derive(Debug)]
-struct Player {
-    name: String,
-    health: i32,
-    class: i32,
-    moves: std::collections::HashMap<String, i32>,
-}
-#[allow(dead_code)]
-struct Slime {
-    health: i32,
-    moves: std::collections::HashMap<String, i32>,
-}
-#[allow(dead_code)]
-impl Slime {
-    fn new() -> Slime {
-        Slime {
-            health: 20,
-            moves: std::collections::HashMap::new(),
-        }
-    }
-}
-impl Player {
-    fn new() -> Player {
-        Player {
-            name: String::new(),
-            health: 100,
-            class: 4,
-            moves: std::collections::HashMap::new(),
-        }
-    }
-}
 fn main() {
     println!(
         "{}",
@@ -91,6 +60,37 @@ fn main() {
             println!("You win!");
         } else {
             println!("{}", "Nothing happened!".green());
+        }
+    }
+}
+#[derive(Debug)]
+struct Player {
+    name: String,
+    health: i32,
+    class: i32,
+    moves: std::collections::HashMap<String, i32>,
+}
+#[allow(dead_code)]
+struct Slime {
+    health: i32,
+    moves: std::collections::HashMap<String, i32>,
+}
+#[allow(dead_code)]
+impl Slime {
+    fn new() -> Slime {
+        Slime {
+            health: 20,
+            moves: std::collections::HashMap::new(),
+        }
+    }
+}
+impl Player {
+    fn new() -> Player {
+        Player {
+            name: String::new(),
+            health: 100,
+            class: 4,
+            moves: std::collections::HashMap::new(),
         }
     }
 }
