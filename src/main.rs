@@ -45,7 +45,7 @@ fn main() {
             println!("Monster health = {}", monster.health);
             while monster.health > 0 {
                 if player.health < 0 {
-                    println!("You are dead!");
+                    println!("{}", "You are dead!".red());
                     return;
                 }
                 if is_player_turn {
