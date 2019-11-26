@@ -59,7 +59,9 @@ fn main() {
             }
             println!("You win!");
         } else {
+            std::thread::sleep(std::time::Duration::from_millis(1000));
             println!("{}", "Nothing happened!".green());
+            std::thread::sleep(std::time::Duration::from_millis(1000));
         }
     }
 }
