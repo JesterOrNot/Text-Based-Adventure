@@ -98,7 +98,7 @@ impl Player {
     fn new() -> Player {
         Player {
             name: String::new(),
-            health: 100,
+            health: 70,
             class: 4,
             moves: std::collections::HashMap::new(),
         }
