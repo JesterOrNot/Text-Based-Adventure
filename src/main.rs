@@ -208,22 +208,3 @@ fn monster_event() -> bool {
         return false;
     }
 }
-#[test]
-fn test_get_moves() {
-    let mut map = std::collections::HashMap::new();
-    let mut map2 = std::collections::HashMap::new();
-    let mut map3 = std::collections::HashMap::new();
-    map.insert(String::from("Fireball"), 4);
-    map2.insert(String::from("Sword"), 2);
-    // map2.insert(String::from("Sheild"), 7);
-    map2.insert(String::from("Hammer"), 5);
-    map3.insert(String::from("Dagger"), 1);
-    // map3.insert(String::from("Invisibility"), 20);
-    map3.insert(String::from("Bow"), 6);
-    assert_eq!(get_moves(1), map);
-    println!("{}", "Mage set works!".green());
-    assert_eq!(get_moves(2), map2);
-    println!("{}", "Warrior set works!".green());
-    assert_eq!(get_moves(3), map3);
-    println!("{}", "Rogue set works!".green());
-}
