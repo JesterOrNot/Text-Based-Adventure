@@ -23,6 +23,10 @@ fn main() {
     }
     player.moves = get_moves(player.class);
     loop {
+        if player.health < 0 {
+            println!("You are dead!");
+            return;
+        }
         let my_move = move_player();
         match my_move {
             1 => println!("{}{}", player.name.green(), " went North!".green()),
@@ -40,6 +44,10 @@ fn main() {
             println!("{}", "A Slime Appeared!".green());
             println!("Monster health = {}", monster.health);
             while monster.health > 0 {
+                if player.health < 0 {
+                    println!("You are dead!");
+                    return;
+                }
                 if is_player_turn {
                     let attack_val = get_attack(&player);
                     let attack_power: Vec<i32> = player.moves.values().map(|i| *i as i32).collect();
