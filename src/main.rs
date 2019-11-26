@@ -201,12 +201,10 @@ struct Player {
     class: i32,
     moves: std::collections::HashMap<String, i32>,
 }
-#[allow(dead_code)]
 struct Slime {
     health: i32,
     moves: std::collections::HashMap<String, i32>,
 }
-#[allow(dead_code)]
 impl Slime {
     fn new() -> Slime {
         Slime {
