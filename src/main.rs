@@ -1,5 +1,3 @@
-extern crate colored; // not needed in Rust 2018
-extern crate rand;
 use colored::*;
 use rand::Rng;
 use std::io::Write;
