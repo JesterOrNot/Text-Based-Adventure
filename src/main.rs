@@ -194,7 +194,6 @@ fn monster_event() -> bool {
         return false;
     }
 }
-#[derive(Debug)]
 struct Player {
     name: String,
     health: i32,
@@ -203,13 +202,11 @@ struct Player {
 }
 struct Slime {
     health: i32,
-    moves: std::collections::HashMap<String, i32>,
 }
 impl Slime {
     fn new() -> Slime {
         Slime {
             health: 20,
-            moves: std::collections::HashMap::new(),
         }
     }
 }
