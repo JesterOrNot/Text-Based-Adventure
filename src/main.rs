@@ -64,7 +64,14 @@ fn main() {
         }
         let did_event_happen = monster_event();
         if did_event_happen {
-            println!("{}", "A Monster Appeared!".green());
+            let is_player_turn = true;
+            let mut rng = rand::thread_rng();
+            let rand_num = rng.gen_range(1, 2);
+            let monster = Slime::new();
+            println!("{}", "A Slime Appeared!".green());
+            if is_player_turn {
+                let attack_val = get_attack(&player);
+            }
         } else {
             println!("{}", "Nothing happened!".green());
         }
@@ -76,6 +83,35 @@ fn get_adventurer_name() -> String {
     let mut adventurer_name = String::new();
     std::io::stdin().read_line(&mut adventurer_name).unwrap();
     return String::from(adventurer_name.trim());
+}
+fn get_attack(player_name: &Player) -> i32 {
+    let move_iter = player_name.moves.keys();
+    let mut index: i32 = 0;
+    print!("{}", "Pick your move! ".cyan());
+    for i in move_iter {
+        print!("{}({}) ", i.green(), index);
+        index += 1;
+    }
+    std::io::stdout().flush().unwrap();
+    let mut attack_move = String::new();
+    std::io::stdin().read_line(&mut attack_move).unwrap();
+    let attack_move = attack_move.trim().parse();
+    match attack_move {
+        Ok(n) => {
+            if n < 0 {
+                println!("{}", "Number too small!".red());
+                return get_attack(player_name);
+            } else if n >= player_name.moves.len() as i32 {
+                println!("{}", "Number too big!".red());
+                return get_attack(player_name);
+            }
+            return n;
+        }
+        Err(_n) => {
+            println!("{}", "You must give a number!".red());
+            return get_attack(player_name);
+        }
+    }
 }
 fn move_player() -> i32 {
     print!(
@@ -133,8 +169,8 @@ fn get_moves(class: i32) -> std::collections::HashMap<String, i32> {
     let mut map = std::collections::HashMap::new();
     if class == 1 {
         map.insert(String::from("Fireball"), 10);
-        map.insert(String::from("Heal"), 5);
-        map.insert(String::from("Ward"), 14);
+    // map.insert(String::from("Heal"), 5);
+    // map.insert(String::from("Ward"), 14);
     } else if class == 2 {
         map.insert(String::from("Sword"), 12);
         map.insert(String::from("Sheild"), 7);
@@ -161,8 +197,6 @@ fn test_get_moves() {
     let mut map2 = std::collections::HashMap::new();
     let mut map3 = std::collections::HashMap::new();
     map.insert(String::from("Fireball"), 10);
-    map.insert(String::from("Heal"), 5);
-    map.insert(String::from("Ward"), 14);
     map2.insert(String::from("Sword"), 12);
     map2.insert(String::from("Sheild"), 7);
     map2.insert(String::from("Hammer"), 20);
