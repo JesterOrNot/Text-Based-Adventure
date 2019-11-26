@@ -73,37 +73,6 @@ fn main() {
         }
     }
 }
-#[derive(Debug)]
-struct Player {
-    name: String,
-    health: i32,
-    class: i32,
-    moves: std::collections::HashMap<String, i32>,
-}
-#[allow(dead_code)]
-struct Slime {
-    health: i32,
-    moves: std::collections::HashMap<String, i32>,
-}
-#[allow(dead_code)]
-impl Slime {
-    fn new() -> Slime {
-        Slime {
-            health: 20,
-            moves: std::collections::HashMap::new(),
-        }
-    }
-}
-impl Player {
-    fn new() -> Player {
-        Player {
-            name: String::new(),
-            health: 70,
-            class: 4,
-            moves: std::collections::HashMap::new(),
-        }
-    }
-}
 fn get_adventurer_name() -> String {
     print!("{}", "What is your name adventurer?: ".cyan());
     std::io::stdout().flush().unwrap();
@@ -223,5 +192,36 @@ fn monster_event() -> bool {
         return true;
     } else {
         return false;
+    }
+}
+#[derive(Debug)]
+struct Player {
+    name: String,
+    health: i32,
+    class: i32,
+    moves: std::collections::HashMap<String, i32>,
+}
+#[allow(dead_code)]
+struct Slime {
+    health: i32,
+    moves: std::collections::HashMap<String, i32>,
+}
+#[allow(dead_code)]
+impl Slime {
+    fn new() -> Slime {
+        Slime {
+            health: 20,
+            moves: std::collections::HashMap::new(),
+        }
+    }
+}
+impl Player {
+    fn new() -> Player {
+        Player {
+            name: String::new(),
+            health: 70,
+            class: 4,
+            moves: std::collections::HashMap::new(),
+        }
     }
 }
