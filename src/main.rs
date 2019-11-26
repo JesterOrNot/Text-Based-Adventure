@@ -1,5 +1,7 @@
 extern crate colored; // not needed in Rust 2018
+extern crate rand;
 use colored::*;
+use rand::Rng;
 use std::io::Write;
 #[derive(Debug)]
 struct Player {
@@ -61,6 +63,12 @@ fn main() {
             3 => println!("{}{}", player.name.green(), " went East!".green()),
             4 => println!("{}{}", player.name.green(), " went West!".green()),
             _ => println!("{}", "FATAL ERROR THIS SHOULDN'T BE POSSIBLE!".red()),
+        }
+        let did_event_happen = monster_event();
+        if did_event_happen {
+            println!("{}", "A Monster Appeared!".green());
+        } else {
+            println!("{}", "Nothing happened!".green());
         }
     }
 }
@@ -139,6 +147,15 @@ fn get_moves(class: i32) -> std::collections::HashMap<String, i32> {
         map.insert(String::from("Bow"), 5);
     }
     return map;
+}
+fn monster_event() -> bool {
+    let mut rng = rand::thread_rng();
+    let rand_num = rng.gen::<i32>();
+    if rand_num % 2 == 0 {
+        return true;
+    } else {
+        return false;
+    }
 }
 #[test]
 fn test_get_moves() {
