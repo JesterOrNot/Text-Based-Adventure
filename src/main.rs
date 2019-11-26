@@ -134,8 +134,12 @@ fn get_attack(player_name: &Player) -> i32 {
 }
 fn move_player() -> i32 {
     print!(
-        "{}",
-        "Would you like to go North(1), South(2), East(3) or West(4)?: ".cyan()
+        "{} {}(1) {}(2) {}(3) or {}(4) ",
+        "Would you like to go".cyan(),
+        "North".green(),
+        "South".green(),
+        "East".green(),
+        "West".green()
     );
     std::io::stdout().flush().unwrap();
     let mut direction = String::new();
@@ -160,8 +164,11 @@ fn move_player() -> i32 {
 }
 fn get_type() -> i32 {
     print!(
-        "{}",
-        "Are you a Mage(1), A Warrior(2) or a Rogue(3)?: ".cyan()
+        "{} {}(1) {}(2) or a {}(3) ",
+        "Are you a".cyan(),
+        "Mage".green(),
+        "A Warrior".green(),
+        "Rogue".green()
     );
     std::io::stdout().flush().unwrap();
     let mut adventurer_type = String::new();
