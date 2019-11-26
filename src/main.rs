@@ -64,14 +64,31 @@ fn main() {
         }
         let did_event_happen = monster_event();
         if did_event_happen {
-            let is_player_turn = true;
+            let mut is_player_turn = true;
             let mut rng = rand::thread_rng();
-            let rand_num = rng.gen_range(1, 2);
-            let monster = Slime::new();
+            let _rand_num = rng.gen_range(1, 2);
+            let mut monster = Slime::new();
             println!("{}", "A Slime Appeared!".green());
-            if is_player_turn {
-                let attack_val = get_attack(&player);
+            println!("Monster health = {}", monster.health);
+            while monster.health > 0 {
+                if is_player_turn {
+                    let attack_val = get_attack(&player);
+                    let attack_power: Vec<i32> = player.moves.values().map(|i| *i as i32).collect();
+                    monster.health -= attack_power[attack_val as usize];
+                    println!("Monster health = {}", monster.health);
+                    std::thread::sleep(std::time::Duration::from_millis(1000));
+                    is_player_turn = false;
+                    continue;
+                } else {
+                    println!("Slime tackles you dealing 3 damage");
+                    std::thread::sleep(std::time::Duration::from_millis(1000));
+                    player.health -= 3;
+                    println!("player health = {}", player.health);
+                    is_player_turn = true;
+                    continue;
+                }
             }
+            println!("You win!");
         } else {
             println!("{}", "Nothing happened!".green());
         }
@@ -168,17 +185,17 @@ fn get_type() -> i32 {
 fn get_moves(class: i32) -> std::collections::HashMap<String, i32> {
     let mut map = std::collections::HashMap::new();
     if class == 1 {
-        map.insert(String::from("Fireball"), 10);
+        map.insert(String::from("Fireball"), 4);
     // map.insert(String::from("Heal"), 5);
     // map.insert(String::from("Ward"), 14);
     } else if class == 2 {
-        map.insert(String::from("Sword"), 12);
-        map.insert(String::from("Sheild"), 7);
-        map.insert(String::from("Hammer"), 20);
+        map.insert(String::from("Sword"), 2);
+        // map.insert(String::from("Sheild"), 7);
+        map.insert(String::from("Hammer"), 5);
     } else if class == 3 {
-        map.insert(String::from("Dagger"), 7);
-        map.insert(String::from("Invisibility"), 20);
-        map.insert(String::from("Bow"), 5);
+        map.insert(String::from("Dagger"), 1);
+        // map.insert(String::from("Invisibility"), 20);
+        map.insert(String::from("Bow"), 6);
     }
     return map;
 }
